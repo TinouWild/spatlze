@@ -13,16 +13,9 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-2">
-            {#<li class="nav-item">#}
-                {#<i class="fas fa-bell fa-3x mx-3"></i>#}
-            {#</li>#}
-            <div class="ui input focus mx-3">
-                <input type="text" placeholder="Search...">
-                <button type="submit"><i class="fas fa-search fa-3x"></i></button>
-            </div>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="searchDropdownLink">
-                    <i class="fas fa-filter fa-3x"></i>
+                    <i class="fas fa-search fa-2x"></i>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="searchDropdownLink">
@@ -35,7 +28,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">
-                    <i class="fas fa-user-astronaut fa-3x mx-3"></i>
+                    <i class="fas fa-user-astronaut fa-2x mx-3"></i>
                 </a>
                 {% if app.user %}
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
