@@ -21,8 +21,9 @@ class ArticlesController extends AbstractController
     public function index(ArticlesRepository $articlesRepository): Response
     {
         $article = $articlesRepository->findByMostRecentDate(new \DateTime());
+        $articles = $articlesRepository->findAll();
         dump($article);
-        return $this->render('articles/index.html.twig', ['articles' => $articlesRepository->findAll(),
+        return $this->render('articles/nouveautes.html.twig', ['articles' => $articles,
             'recentarticle' =>$article]);
     }
 

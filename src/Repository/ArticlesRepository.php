@@ -34,7 +34,17 @@ class ArticlesRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
+    public function findLastSixRecentDate(\DateTime $date)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.date <= :date')
+            ->setParameter('date', $date)
+            ->orderBy('a.date', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     /*
     public function findOneBySomeField($value): ?Articles
     {

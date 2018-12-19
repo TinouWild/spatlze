@@ -3,7 +3,8 @@
 {% block title %}Article {{ article.title }}{% endblock %}
 
 {% block body %}
-    <div class="d-flex align-baseline" style="background-image: url('{{ article.headPicture }}'); background-size: cover; height: 400px">
+
+    <div class="jumbotron" style="background-image: url('{{ article.headPicture }}'); background-size: cover; height: 400px">
         <div class="container">
             <h1 class="text-light">{{ article.title }}</h1>
             <div class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</div>
@@ -15,7 +16,11 @@
         {% for author in article.author %}
             <div class="col">
             <img class="rounded rounded-circle" src="{{ author.avatar }}">
-            {{ author.pseudo }}
+            <h3>{{ author.pseudo }}</h3>
+                <div class="ui inverted orange button">
+                    <i class="fas fa-user-astronaut"></i>
+                    Follow
+                </div>
             </div>
         {% endfor %}
         </div>
