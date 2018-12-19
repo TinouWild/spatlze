@@ -21,10 +21,11 @@ security:
             form_login:
                 login_path: account_login
                 check_path: account_login
+                default_target_path: home_accueil
 
             logout:
                 path: account_logout
-                target: home
+                target: home_accueil
 
             # activate different ways to authenticate
 
