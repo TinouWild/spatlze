@@ -65,6 +65,11 @@ class Articles
      */
     private $support;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $headPicture;
+
     public function __construct()
     {
         $this->author = new ArrayCollection();
@@ -223,6 +228,18 @@ class Articles
     public function setSupport(?Support $support): self
     {
         $this->support = $support;
+
+        return $this;
+    }
+
+    public function getHeadPicture(): ?string
+    {
+        return $this->headPicture;
+    }
+
+    public function setHeadPicture(string $headPicture): self
+    {
+        $this->headPicture = $headPicture;
 
         return $this;
     }

@@ -16,11 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticlesController extends AbstractController
 {
     /**
-     * @Route("/", name="articles_index", methods={"GET"})
+     * @Route("/nouveautes", name="articles_nouveautes", methods={"GET"})
      */
     public function index(ArticlesRepository $articlesRepository): Response
     {
-        return $this->render('articles/index.html.twig', ['articles' => $articlesRepository->findAll()]);
+        $article = $articlesRepository->findByMostRecentDate(new \DateTime());
+        dump($article);
+        return $this->render('articles/index.html.twig', ['articles' => $articlesRepository->findAll(),
+            'recentarticle' =>$article]);
     }
 
     /**
@@ -47,7 +50,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="articles_show", methods={"GET"})
+     * @Route("/{slug}", name="articles_show", methods={"GET"})
      */
     public function show(Articles $article): Response
     {

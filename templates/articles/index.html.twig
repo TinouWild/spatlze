@@ -1,41 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articles index{% endblock %}
+{% block title %}Fix.R{% endblock %}
 
 {% block body %}
-    <h1>Articles index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Date</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
-                <td>{{ article.date ? article.date|date('Y-m-d') : '' }}</td>
-                <td>{{ article.slug }}</td>
-                <td>
-                    <a href="{{ path('articles_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('articles_new') }}">Create new</a>
-{% endblock %}
+    {% for recentarticle in recentarticle %}
+<div class="d-flex align-baseline" style="background-image: url('{{ recentarticle.headPicture }}'); background-size: cover; height: 400px">
+    <div class="container text-light">
+        <h1>{{ recentarticle.title }}</h1>
+        <p> Article du {{ recentarticle.date ? recentarticle.date|date('d-m-Y') : '' }} </p>
+    </div>
+</div>
+<div class="container">
+
+    {% endfor %}
+
+    <div class="container mt-3">
+        <div class="row">
+            {% for article in articles %}
+                <div class="col">
+                            <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style="background-image: url({{ article.headPicture }}); background-size : cover; height: 200px; width: 300px">
+                                <div class="header text-light h3 ml-2">{{ article.title }}</div>
+                            </div></a>
+                </div>
+            {% else %}
+                <div colspan="6">no records found</div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    {% endblock %}
