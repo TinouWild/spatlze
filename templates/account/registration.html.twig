@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscrivez-vous sur Fix.R !{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5 bg-light p-3">
+
+        <h1 class="text-warning mb-3">Inscrivez-vous sur Fix.R !</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn">Inscription</button>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
