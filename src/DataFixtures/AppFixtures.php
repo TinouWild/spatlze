@@ -139,29 +139,29 @@ class AppFixtures extends Fixture
             $localisations[] = $location;
         }
 
-        for ($j = 1; $i <= 100; $i++) {
-            $article = new Articles();
-            $user = $randomUsers[mt_rand(0, count($randomUsers) - 1)];
-
-            $article->setTitle($faker->sentence())
-                    ->setContent($faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-                        $faker->sentence($faker->numberBetween(5, 20), true))
-                    ->addAuthor($user)
-                    ->addTheme($theme)
-                    ->addTag($tag)
-                    ->setDate($faker->dateTime('now'))
-                    ->setHeadPicture($faker->imageUrl(1200, 300));
-            $manager->persist($article);
-            }
+//        for ($j = 1; $i <= 100; $i++) {
+//            $article = new Articles();
+//            $user = $randomUsers[mt_rand(0, count($randomUsers) - 1)];
+//
+//            $article->setTitle($faker->sentence())
+//                    ->setContent($faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+//                        $faker->sentence($faker->numberBetween(5, 20), true))
+//                    ->addAuthor($user)
+//                    ->addTheme($theme)
+//                    ->addTag($tag)
+//                    ->setDate($faker->dateTime('now'))
+//                    ->setHeadPicture($faker->imageUrl(1200, 300));
+//            $manager->persist($article);
+//            }
 
         $manager->flush();
     }
