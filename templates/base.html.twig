@@ -8,13 +8,16 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    {% include 'partial/header.html.twig' %}
 
         {% block body %}{% endblock %}
-
+    {% include 'partial/footer.html.twig' %}
         <script src="/js/jquery.min.js"></script>
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/semantic.min.js"></script>
         {% block javascripts %}{% endblock %}
+
+
     </body>
 </html>
