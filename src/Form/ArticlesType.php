@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticlesType extends AbstractType
+class ArticlesType extends ApplicationType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
