@@ -2,7 +2,12 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Articles;
+use App\Entity\Localisation;
 use App\Entity\Role;
+use App\Entity\Support;
+use App\Entity\Tag;
+use App\Entity\Theme;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -19,8 +24,40 @@ class AppFixtures extends Fixture
         'ROLE_ADMIN'
     ];
     private $themes = [
-
+        'Politique',
+        'Economie',
+        'Culture',
+        'Santé',
+        'Histoire',
+        'Société',
+        'International',
+        'Education',
+        'Environnement',
+        'Loisirs',
+        'Sport',
+        'Journalisme'
     ];
+    private $tags = [
+        'Addictions',
+        'Agriculture',
+        'Art contemporain',
+        'Cigarettes',
+        'Consommation',
+        'Communication',
+        'Football',
+        'Indonésie',
+        'Lait',
+        'Pollution',
+        'Strasbourg'
+    ];
+    private $supports = [
+        'Article',
+        'Vidéo',
+        'Podcast',
+        'LIVE!'
+    ];
+
+    private $localisation;
 
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
@@ -37,7 +74,23 @@ class AppFixtures extends Fixture
             $manager->persist($randomRole);
         }
 
+        foreach ($this->themes as $key => $themeName) {
+            $theme = new Theme();
+            $theme->setThemeName($themeName);
+            $manager->persist($theme);
+        }
 
+        foreach ($this->tags as $key => $tagName) {
+            $tag = new Tag();
+            $tag->setTagName($tagName);
+            $manager->persist($tag);
+        }
+
+        foreach ($this->supports as $key => $supportName) {
+            $support = new Support();
+            $support->setMedia($supportName);
+            $manager->persist($support);
+        }
 
         $julie = new User();
         $julie->setPseudo('juju')
@@ -79,6 +132,36 @@ class AppFixtures extends Fixture
             $manager->persist($randomUser);
             $randomUsers[] = $randomUser;
         }
+
+        $localisations[] = new Localisation();
+        for ($j = 1; $j <= 20; $j++) {
+            $location = $faker->city;
+            $localisations[] = $location;
+        }
+
+        for ($j = 1; $i <= 100; $i++) {
+            $article = new Articles();
+            $user = $randomUsers[mt_rand(0, count($randomUsers) - 1)];
+
+            $article->setTitle($faker->sentence())
+                    ->setContent($faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true))
+                    ->addAuthor($user)
+                    ->addTheme($theme)
+                    ->addTag($tag)
+                    ->setDate($faker->dateTime('now'))
+                    ->setHeadPicture($faker->imageUrl(1200, 300));
+            $manager->persist($article);
+            }
 
         $manager->flush();
     }

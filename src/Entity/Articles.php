@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Articles
 {
@@ -39,7 +41,7 @@ class Articles
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="articles", cascade={"persist"})
      */
     private $author;
 
@@ -55,13 +57,13 @@ class Articles
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $localisation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Support", inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $support;
 
@@ -69,6 +71,17 @@ class Articles
      * @ORM\Column(type="string", length=255)
      */
     private $headPicture;
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function initializeSlug() {
+        if(empty($this->slug)) {
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->title. uniqid());
+        }
+    }
 
     public function __construct()
     {
