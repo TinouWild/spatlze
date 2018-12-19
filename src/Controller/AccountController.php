@@ -94,7 +94,7 @@ class AccountController extends AbstractController
                 "Votre inscription a bien été prise en compte !"
             );
 
-            return $this->redirectToRoute('home_accueil');
+            return $this->redirectToRoute('account_login');
         }
 
         return $this->render('account/registration.html.twig', [
