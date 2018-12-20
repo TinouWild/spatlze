@@ -76,14 +76,14 @@ class User implements UserInterface
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Articles", mappedBy="author")
-     */
-    private $articles;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users")
      */
     private $userRoles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Articles", mappedBy="author")
+     */
+    private $articles;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="following")
@@ -99,10 +99,11 @@ class User implements UserInterface
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
-    public function initializeSlug() {
-        if(empty($this->slug)) {
+    public function initializeSlug()
+    {
+        if (empty($this->slug)) {
             $slugify = new Slugify();
-            $this->slug = $slugify->slugify(uniqid(). $this->pseudo. uniqid());
+            $this->slug = $slugify->slugify(uniqid() . $this->pseudo . uniqid());
         }
     }
 
@@ -217,34 +218,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Articles[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Articles $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->addAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Articles $article): self
-    {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
-            $article->removeAuthor($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Role[]
      */
     public function getUserRoles(): Collection
@@ -286,7 +259,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        $roles = $this->userRoles->map(function($role) {
+        $roles = $this->userRoles->map(function ($role) {
             return $role->getroleName();
         })->toArray();
 
@@ -317,9 +290,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-
     }
-
     /**
      * Returns the username used to authenticate the user.
      *
@@ -339,59 +310,5 @@ class User implements UserInterface
     public function eraseCredentials()
     {
 
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getFollowers(): Collection
-    {
-        return $this->followers;
-    }
-
-    public function addFollower(self $follower): self
-    {
-        if (!$this->followers->contains($follower)) {
-            $this->followers[] = $follower;
-        }
-
-        return $this;
-    }
-
-    public function removeFollower(self $follower): self
-    {
-        if ($this->followers->contains($follower)) {
-            $this->followers->removeElement($follower);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getFollowing(): Collection
-    {
-        return $this->following;
-    }
-
-    public function addFollowing(self $following): self
-    {
-        if (!$this->following->contains($following)) {
-            $this->following[] = $following;
-            $following->addFollower($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFollowing(self $following): self
-    {
-        if ($this->following->contains($following)) {
-            $this->following->removeElement($following);
-            $following->removeFollower($this);
-        }
-
-        return $this;
     }
 }

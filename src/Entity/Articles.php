@@ -41,11 +41,6 @@ class Articles
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="articles", cascade={"persist"})
-     */
-    private $author;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Theme", inversedBy="articles")
      */
     private $theme;
@@ -71,6 +66,12 @@ class Articles
      * @ORM\Column(type="string", length=255)
      */
     private $headPicture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     /**
      * @ORM\PrePersist
@@ -139,32 +140,6 @@ class Articles
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getAuthor(): Collection
-    {
-        return $this->author;
-    }
-
-    public function addAuthor(User $author): self
-    {
-        if (!$this->author->contains($author)) {
-            $this->author[] = $author;
-        }
-
-        return $this;
-    }
-
-    public function removeAuthor(User $author): self
-    {
-        if ($this->author->contains($author)) {
-            $this->author->removeElement($author);
-        }
 
         return $this;
     }
@@ -253,6 +228,18 @@ class Articles
     public function setHeadPicture(string $headPicture): self
     {
         $this->headPicture = $headPicture;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

@@ -8,6 +8,7 @@
         "cboden/ratchet": "^0.4.1",
         "cocur/slugify": "^3.1",
         "fzaninotto/faker": "^1.8",
+        "kms/froala-editor-bundle": "dev-master",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",
@@ -22,12 +23,14 @@
         "symfony/security-bundle": "4.2.*",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/templating": "4.2.*",
         "symfony/translation": "4.2.*",
         "symfony/twig-bundle": "4.2.*",
         "symfony/validator": "4.2.*",
         "symfony/web-link": "4.2.*",
         "symfony/yaml": "4.2.*",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+        "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",

@@ -1,0 +1,7 @@
+kms_froala_editor:
+  language: "fr"
+  includeJQuery: true
+  includeCodeMirror: false
+  includeFontAwesome: true
+  includeJS: true
+  includeCSS: true

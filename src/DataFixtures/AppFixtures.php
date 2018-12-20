@@ -133,35 +133,13 @@ class AppFixtures extends Fixture
             $randomUsers[] = $randomUser;
         }
 
-        $localisations[] = new Localisation();
+        $localisations = [];
         for ($j = 1; $j <= 20; $j++) {
-            $location = $faker->city;
+            $location = new Localisation();
+            $location->setLocationName($faker->city);
+            $manager->persist($location);
             $localisations[] = $location;
         }
-
-//        for ($j = 1; $i <= 100; $i++) {
-//            $article = new Articles();
-//            $user = $randomUsers[mt_rand(0, count($randomUsers) - 1)];
-//
-//            $article->setTitle($faker->sentence())
-//                    ->setContent($faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
-//                        $faker->sentence($faker->numberBetween(5, 20), true))
-//                    ->addAuthor($user)
-//                    ->addTheme($theme)
-//                    ->addTag($tag)
-//                    ->setDate($faker->dateTime('now'))
-//                    ->setHeadPicture($faker->imageUrl(1200, 300));
-//            $manager->persist($article);
-//            }
 
         $manager->flush();
     }
