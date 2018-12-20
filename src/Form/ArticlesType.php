@@ -35,8 +35,8 @@ class ArticlesType extends ApplicationType
                 'expanded' => true,
                 'placeholder' => 'Choisisser un tag ...'
             ])
-        ;
-    }
+    ;
+}
 
     public function configureOptions(OptionsResolver $resolver)
     {

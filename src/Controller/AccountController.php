@@ -62,32 +62,8 @@ class AccountController extends AbstractController
             $hash = $encoder->encodePassword($user, $user->getHash());
             $user->setHash($hash);
 
-//            $guestExist = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email'=>$guest->getEmail()]);
-//            if (is_null($guestExist)) {
-//                $guest->getEvents($event);
-//                $manager->persist($guest);
-//            } else {
-//                $guestExist->getEvents($event);
-//                $event->removeGuest($guest);
-//                $event->addGuest($guestExist);
-//                $manager->persist($guestExist);
-//            }
-
             $manager->persist($user);
             $manager->flush();
-
-//            $message = (new \Swift_Message('Registration on TaskPlanner'))
-//                ->setFrom('tinouclt@gmail.com')
-//                ->setTo($user->getEmail())
-//                ->setBody(
-//                    '<html>' .
-//                    ' <body>' .
-//                    '  Congratulations, you are now register on TaskPlanner !' .
-//                    'You can now access to your account' . ' ' . $user->getFullName().
-//                    ' </body>' .
-//                    '</html>'
-//                );
-//            $mailer->send($message);
 
             $this->addFlash(
                 'success',
