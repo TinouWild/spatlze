@@ -86,6 +86,16 @@ class User implements UserInterface
     private $userRoles;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="following")
+     */
+    private $followers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="followers")
+     */
+    private $following;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
@@ -101,6 +111,8 @@ class User implements UserInterface
         $this->articles = new ArrayCollection();
         $this->role = new ArrayCollection();
         $this->userRoles = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+        $this->following = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -327,5 +339,59 @@ class User implements UserInterface
     public function eraseCredentials()
     {
 
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(self $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(self $follower): self
+    {
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getFollowing(): Collection
+    {
+        return $this->following;
+    }
+
+    public function addFollowing(self $following): self
+    {
+        if (!$this->following->contains($following)) {
+            $this->following[] = $following;
+            $following->addFollower($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowing(self $following): self
+    {
+        if ($this->following->contains($following)) {
+            $this->following->removeElement($following);
+            $following->removeFollower($this);
+        }
+
+        return $this;
     }
 }
