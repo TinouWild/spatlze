@@ -16,6 +16,13 @@ class RegistrationType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+//            ->add('role', EntityType::class, [
+//                'class' => Status::class,
+//                'choice_label' => 'status',
+//                'expanded' => true,
+//                'multiple' => false,
+//                'label' => false,
+//            ])
             ->add('pseudo', TextType::class, $this->getConfiguration("Votre pseudo ..."))
             ->add('mail', EmailType::class, $this->getConfiguration("Votre adresse mail ..."))
             ->add('avatar', UrlType::class, $this->getConfiguration("URL de votre avatar ..."))
