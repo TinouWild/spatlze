@@ -3,6 +3,8 @@
 {% block title %}Nouvel article{% endblock %}
 
 {% block body %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
     <div class="container my-5 bg-light p-3">
 
         <h1 class="text-warning mb-3">Publier un article sur Fix.R !</h1>

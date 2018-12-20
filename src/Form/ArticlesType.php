@@ -18,7 +18,7 @@ class ArticlesType extends ApplicationType
     {
         $builder
             ->add('title', TextType::class, $this->getConfiguration('Le titre de votre post ...'))
-            ->add('content', TextareaType::class)
+            ->add('content', TextareaType::class, $this->getConfiguration('Le contenu de votre article ...'))
             ->add('date')
             ->add('theme', EntityType::class, [
                 'class' => Theme::class,
