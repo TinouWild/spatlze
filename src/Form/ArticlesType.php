@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticlesType extends ApplicationType
 {
@@ -34,6 +35,12 @@ class ArticlesType extends ApplicationType
                 'multiple' => true,
                 'expanded' => true,
                 'placeholder' => 'Choisisser un tag ...'
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Sélectionner une image de couverture ...'
+                ]
             ])
     ;
 }
