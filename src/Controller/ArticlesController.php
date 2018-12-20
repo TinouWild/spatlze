@@ -7,6 +7,7 @@ use App\Entity\Theme;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
 use App\Repository\UserRepository;
+use App\Services\CountDown;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,9 +69,11 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/{slug}", name="articles_show", methods={"GET"})
      */
-    public function show(Articles $article): Response
+    public function show(Articles $article, CountDown $countDown): Response
     {
-        return $this->render('articles/show.html.twig', ['article' => $article]);
+        $countDown->DebatCountDonw($article->getDate());
+        return $this->render('articles/show.html.twig', ['article' => $article,
+            'countDown' => $countDown]);
     }
 
     /**

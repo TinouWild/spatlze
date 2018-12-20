@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="jumbotron" style="background-image: url('{{ article.headPicture }}'); background-size: cover; height: 400px">
+    <div class="jumbotron" style="background-image: url('/images/articles/{{ article.imageName }}'); background-size: cover; height: 400px">
         <div class="container">
             <h1 class="text-light">{{ article.title }}</h1>
             <div class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</div>
@@ -13,13 +13,30 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
-            <img class="rounded rounded-circle" src="{{ article.author.avatar }}">
-            <h3>{{ article.author.pseudo }}</h3>
+            <div class="col-3">
+                <img class="rounded rounded-circle ui small" src="{{ article.author.avatar }}">
+                <h5>{{ article.author.pseudo }}</h5>
                 <div class="ui inverted orange button">
                     <i class="fas fa-user-astronaut"></i>
                     Follow
                 </div>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col">
+                        <h4 >Débat prévu le "date du débat"</h4>
+                        <div class="ui inverted orange button">
+                            Participer au débat
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h4>Temps restant avant débat</h4>
+                        <div class="ui inverted orange button">
+                            Voir le débat
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
