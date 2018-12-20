@@ -14,7 +14,7 @@
 
 
             <div class="col">
-                <a href=""><img class="rounded rounded-circle" src="{{ author.avatar }}"></a>
+                <a href="{{ path('page_author', {'slug': author.slug}) }}"><img class="rounded rounded-circle" src="{{ author.avatar }}"></a>
                 <h3>{{ author.pseudo }}</h3>
                 <div class="ui inverted orange button">
                     <i class="fas fa-user-astronaut"></i>

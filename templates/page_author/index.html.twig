@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trouver un.e auteur.e{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+    {% for author in authors %}
+        <div class="col-3">
+            <a href="{{ path('page_author', {'slug': author.slug}) }}"><img class="rounded rounded-circle ui small" src="{{ author.avatar }}">
+            <h5>{{ author.pseudo }}</h5></a>
+            <div class="ui inverted orange button">
+                <i class="fas fa-user-astronaut"></i>
+                Follow
+            </div>
+        </div>
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

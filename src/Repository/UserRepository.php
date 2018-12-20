@@ -39,7 +39,17 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC')
+            ->andWhere('u.userRole = 11')
             ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findAllWriter()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC')
+            ->andWhere('u.userRole = 11')
             ->getQuery()
             ->getResult()
             ;

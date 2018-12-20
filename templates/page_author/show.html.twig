@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de {{ author.pseudo }}{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <img class="rounded rounded-circle ui small" src="{{ author.avatar }}">
+        {{ author.pseudo }}
+    </div>
+
+    {% for author in author %}
+{% for article in author.articles %}
+        {{ article.title }}
+    {% endfor %}
+    {% endfor %}
+{% endblock %}
