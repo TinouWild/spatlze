@@ -6,6 +6,7 @@ use App\Entity\Articles;
 use App\Entity\Theme;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
+use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,13 +21,15 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/nouveautes", name="articles_nouveautes", methods={"GET"})
      */
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function index(ArticlesRepository $articlesRepository, UserRepository $userRepository): Response
     {
         $article = $articlesRepository->findByMostRecentDate(new \DateTime());
         $articles = $articlesRepository->findAll();
-        dump($article);
+        $authors = $userRepository->findLastSixRecentWriter();
+        dump($authors);
         return $this->render('articles/nouveautes.html.twig', ['articles' => $articles,
-            'recentarticle' =>$article]);
+            'recentarticle' =>$article,
+            'authors'=> $authors]);
     }
 
     /**
@@ -53,7 +56,7 @@ class ArticlesController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
-            return $this->redirectToRoute('articles_index');
+            return $this->redirectToRoute('articles_nouveaute');
         }
 
         return $this->render('articles/new.html.twig', [

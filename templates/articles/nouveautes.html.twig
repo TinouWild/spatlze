@@ -7,22 +7,33 @@
     {#Les auteurs#}
     <div class="container">
         <h2>Les auteur.e.s ayant publiés récemment sur Fix.<span style="color:#ff7a0c">R</span></h2>
+
+
+    <div class="row">
+        {% for author in authors %}
+            <div class="col">
+                <a href="#"> <img class="rounded rounded-circle" src="{{ author.avatar }}"></a>
+                <h3>{{ author.pseudo }}</h3>
+                <div class="ui inverted orange button">
+                    <i class="fas fa-user-astronaut"></i>
+                    Follow
+                </div>
+
+            </div>
+        {% endfor %}
     </div>
-
-
-
-
+    </div>
     {#Les articles#}
     <div class="container">
         <h2>Les derniers articles parus sur Fix.<span style="color:#ff7a0c">R</span></h2>
     </div>
     {% for recentarticle in recentarticle %}
-        <div class="d-flex align-baseline" style="background-image: url('{{ recentarticle.headPicture }}'); background-size: cover; height: 400px">
-            <div class="container text-light">
+        <a href="{{ path('articles_show', {'slug': recentarticle.slug}) }}"><div class="d-flex align-baseline" style="background-image: url('{{ recentarticle.headPicture }}'); background-size: cover; height: 400px">
+            <div class="container text-light" style="text-shadow: #6c757d ">
                 <h1>{{ recentarticle.title }}</h1>
                 <p> Article du {{ recentarticle.date ? recentarticle.date|date('d-m-Y') : '' }} </p>
             </div>
-        </div>
+            </div></a>
         <div class="container">
 
     {% endfor %}
