@@ -5,13 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class ChatController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/chat", name="chat")
      */
     public function index()
     {
-        return $this->render('home/index.html.twig');
+        return $this->render('chat/index.html.twig');
     }
 }

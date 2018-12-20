@@ -19,9 +19,8 @@ class AppFixtures extends Fixture
 {
     private $encoder;
     private $roles = [
-        'ROLE_USER',
-        'ROLE_WRITER',
-        'ROLE_ADMIN'
+        'Lecteur',
+        'Journaliste'
     ];
     private $themes = [
         'Politique',
