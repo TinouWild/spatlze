@@ -76,14 +76,14 @@ class User implements UserInterface
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Articles", mappedBy="author")
-     */
-    private $articles;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users")
      */
     private $userRoles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Articles", mappedBy="author")
+     */
+    private $articles;
 
     /**
      * @ORM\PrePersist
@@ -205,34 +205,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Articles[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Articles $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->addAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Articles $article): self
-    {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
-            $article->removeAuthor($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Role[]
      */
     public function getUserRoles(): Collection
@@ -327,5 +299,36 @@ class User implements UserInterface
     public function eraseCredentials()
     {
 
+    }
+
+    /**
+     * @return Collection|Articles[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Articles $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Articles $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }

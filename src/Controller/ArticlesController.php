@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Theme;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,16 +32,26 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/new", name="articles_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ObjectManager $manager): Response
     {
         $article = new Articles();
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($article);
-            $entityManager->flush();
+            $article->setAuthor($this->getUser());
+
+            foreach ($article->getTheme() as $theme) {
+                $theme->getArticles($article);
+                $manager->persist($theme);
+            }
+
+            foreach ($article->getTag() as $tag) {
+                $tag->getArticles($article);
+                $manager->persist($tag);
+            }
+            $manager->persist($article);
+            $manager->flush();
 
             return $this->redirectToRoute('articles_index');
         }

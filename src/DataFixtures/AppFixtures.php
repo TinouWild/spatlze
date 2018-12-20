@@ -133,9 +133,11 @@ class AppFixtures extends Fixture
             $randomUsers[] = $randomUser;
         }
 
-        $localisations[] = new Localisation();
+        $localisations = [];
         for ($j = 1; $j <= 20; $j++) {
-            $location = $faker->city;
+            $location = new Localisation();
+            $location->setLocationName($faker->city);
+            $manager->persist($location);
             $localisations[] = $location;
         }
 
