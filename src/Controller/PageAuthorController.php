@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Articles;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,10 @@ class PageAuthorController extends AbstractController
      */
     public function show(User $author)
     {
-        return $this->render('page_author/show.html.twig', ['author'=>$author]);
+        $articles = $this->getDoctrine()->getRepository(Articles::class)->findBy(['author'=>$author],['date'=>'DESC']);
+        $count = count($articles);
+        dump($count);
+        return $this->render('page_author/show.html.twig', ['author'=>$author,
+            'count'=>$count]);
     }
 }

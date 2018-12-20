@@ -294,4 +294,35 @@ class User implements UserInterface
 
         return $this;
     }
+    /**
+     * @return Collection|Articles[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticles(Articles $articles): self
+    {
+        if (!$this->articles->contains($articles)) {
+            $this->articles[] = $articles;
+            $articles->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticles(Articles $articles): self
+    {
+        if ($this->articles->contains($articles)) {
+            $this->articles->removeElement($articles);
+            // set the owning side to null (unless already changed)
+            if ($articles->getAuthor() === $this) {
+                $articles->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

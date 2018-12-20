@@ -5,13 +5,39 @@
 {% block body %}
 
     <div class="container">
+        <div class="row mb-3">
+            <div class="col-2">
         <img class="rounded rounded-circle ui small" src="{{ author.avatar }}">
-        {{ author.pseudo }}
+            </div>
+            <div class="col">
+                <span class="h4">{{ author.pseudo }}</span><br>
+        {{ count }} articles
+            </div>
+    </div>
     </div>
 
-    {% for author in author %}
-{% for article in author.articles %}
-        {{ article.title }}
+    {% for article in author.articles | slice(0,1) %}
+        <div class="container-fluid">
+        <a href="{{ path('articles_show', {'slug': article.slug}) }}"> <div class="d-flex align-baseline" style='background-image: url("/images/articles/{{ article.imageName }}"); background-size: cover; height: 400px; width: 100%/**/;'>
+                <div class="container text-light">
+                    <h1>{{ article.title }}</h1>
+                    <p> Article du {{ article.date ? article.date|date('d-m-Y') : '' }} </p>
+                </div>
+            </div></a>
+
     {% endfor %}
-    {% endfor %}
+
+    <div class="container mt-3">
+        <div class="row">
+            {% for article in author.articles | slice(1,100000000000000) %}
+                <div class="col">
+                    <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style='background-image: url("/images/articles/{{ article.imageName }}"); background-size : cover; height: 200px; width: 300px'>
+                            <div class="header text-light h3 ml-2">{{ article.title }}</div>
+                            <p class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</p>
+                        </div></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
 {% endblock %}
