@@ -7,33 +7,22 @@
     {#Les auteurs#}
     <div class="container">
         <h2>Les auteur.e.s ayant publiés récemment sur Fix.<span style="color:#ff7a0c">R</span></h2>
-
-
-    <div class="row">
-        {% for author in authors %}
-            <div class="col">
-                <a href="#"> <img class="rounded rounded-circle" src="{{ author.avatar }}"></a>
-                <h3>{{ author.pseudo }}</h3>
-                <div class="ui inverted orange button">
-                    <i class="fas fa-user-astronaut"></i>
-                    Follow
-                </div>
-
-            </div>
-        {% endfor %}
     </div>
-    </div>
+
+
+
+
     {#Les articles#}
     <div class="container">
         <h2>Les derniers articles parus sur Fix.<span style="color:#ff7a0c">R</span></h2>
     </div>
     {% for recentarticle in recentarticle %}
-        <a href="{{ path('articles_show', {'slug': recentarticle.slug}) }}"><div class="d-flex align-baseline" style="background-image: url('{{ recentarticle.headPicture }}'); background-size: cover; height: 400px">
-            <div class="container text-light" style="text-shadow: #6c757d ">
+        <div class="d-flex align-baseline" style='background-image: url("/images/articles/{{ recentarticle.imageName }}"); background-size: cover; height: 400px'>
+            <div class="container text-light">
                 <h1>{{ recentarticle.title }}</h1>
                 <p> Article du {{ recentarticle.date ? recentarticle.date|date('d-m-Y') : '' }} </p>
             </div>
-            </div></a>
+        </div>
         <div class="container">
 
     {% endfor %}
@@ -42,7 +31,7 @@
         <div class="row">
             {% for article in articles |sort %}
                 <div class="col">
-                    <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style="background-image: url({{ article.headPicture }}); background-size : cover; height: 200px; width: 300px">
+                    <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style='background-image: url("/images/articles/{{ article.imageName }}"); background-size : cover; height: 200px; width: 300px'>
                             <div class="header text-light h3 ml-2">{{ article.title }}</div>
                             <p class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</p>
                         </div></a>
