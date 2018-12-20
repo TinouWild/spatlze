@@ -175,6 +175,30 @@ class AppFixtures extends Fixture
                     ->setContent($faker->sentence($faker->numberBetween(5, 20), true). ' '.
                         $faker->sentence($faker->numberBetween(5, 20), true). ' '.
                         $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
+                        $faker->sentence($faker->numberBetween(5, 20), true). ' '.
                         $faker->sentence($faker->numberBetween(5, 20), true))
                     ->addTheme($theme)
                     ->addTag($tag)
