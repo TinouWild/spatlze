@@ -81,23 +81,17 @@ class Articles
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageName;
 
     /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $imageSize;
 
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -126,22 +120,22 @@ class Articles
         return $this->imageFile;
     }
 
-    public function setImageName(?string $imageName): void
+    public function setImageName($imageName)
     {
         $this->imageName = $imageName;
     }
 
-    public function getImageName(): ?string
+    public function getImageName()
     {
         return $this->imageName;
     }
 
-    public function setImageSize(?int $imageSize): void
+    public function setImageSize($imageSize)
     {
         $this->imageSize = $imageSize;
     }
 
-    public function getImageSize(): ?int
+    public function getImageSize()
     {
         return $this->imageSize;
     }
@@ -289,18 +283,6 @@ class Articles
     public function setSupport(?Support $support): self
     {
         $this->support = $support;
-
-        return $this;
-    }
-
-    public function getHeadPicture(): ?string
-    {
-        return $this->headPicture;
-    }
-
-    public function setHeadPicture(string $headPicture): self
-    {
-        $this->headPicture = $headPicture;
 
         return $this;
     }
