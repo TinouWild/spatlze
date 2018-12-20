@@ -56,7 +56,7 @@ class ArticlesController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
-            return $this->redirectToRoute('articles_nouveaute');
+            return $this->redirectToRoute('articles_nouveautes');
         }
 
         return $this->render('articles/new.html.twig', [

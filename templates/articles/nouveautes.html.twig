@@ -8,8 +8,23 @@
     <div class="container">
         <h2>Les auteur.e.s ayant publiés récemment sur Fix.<span style="color:#ff7a0c">R</span></h2>
     </div>
+    <div class="container">
+        <div class="row">
+{% for author in authors %}
 
 
+            <div class="col">
+                <img class="rounded rounded-circle" src="{{ author.avatar }}">
+                <h3>{{ author.pseudo }}</h3>
+                <div class="ui inverted orange button">
+                    <i class="fas fa-user-astronaut"></i>
+                    Follow
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
 
 
     {#Les articles#}
