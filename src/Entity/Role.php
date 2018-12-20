@@ -24,7 +24,7 @@ class Role
     private $roleName;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="userRoles")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="userRole")
      */
     private $users;
 
@@ -62,7 +62,7 @@ class Role
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addUserRole($this);
+            $user->setUserRole($this);
         }
 
         return $this;
@@ -72,7 +72,10 @@ class Role
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
-            $user->removeUserRole($this);
+            // set the owning side to null (unless already changed)
+            if ($user->getUserRole() === $this) {
+                $user->setUserRole(null);
+            }
         }
 
         return $this;

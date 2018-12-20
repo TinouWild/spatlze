@@ -76,11 +76,6 @@ class User implements UserInterface
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users")
-     */
-    private $userRoles;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Articles", mappedBy="author")
      */
     private $articles;
@@ -94,6 +89,12 @@ class User implements UserInterface
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="followers")
      */
     private $following;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userRole;
 
     /**
      * @ORM\PrePersist
@@ -218,32 +219,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Role[]
-     */
-    public function getUserRoles(): Collection
-    {
-        return $this->userRoles;
-    }
-
-    public function addUserRole(Role $userRole): self
-    {
-        if (!$this->userRoles->contains($userRole)) {
-            $this->userRoles[] = $userRole;
-        }
-
-        return $this;
-    }
-
-    public function removeUserRole(Role $userRole): self
-    {
-        if ($this->userRoles->contains($userRole)) {
-            $this->userRoles->removeElement($userRole);
-        }
-
-        return $this;
-    }
-
-    /**
      * Returns the roles granted to the user.
      *
      *     public function getRoles()
@@ -259,10 +234,6 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        $roles = $this->userRoles->map(function ($role) {
-            return $role->getroleName();
-        })->toArray();
-
         $roles[] = 'ROLE_USER';
 
         return $roles;
@@ -310,5 +281,17 @@ class User implements UserInterface
     public function eraseCredentials()
     {
 
+    }
+
+    public function getUserRole(): ?Role
+    {
+        return $this->userRole;
+    }
+
+    public function setUserRole(?Role $userRole): self
+    {
+        $this->userRole = $userRole;
+
+        return $this;
     }
 }

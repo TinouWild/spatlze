@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Role;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -16,13 +18,13 @@ class RegistrationType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('role', EntityType::class, [
-//                'class' => Status::class,
-//                'choice_label' => 'status',
-//                'expanded' => true,
-//                'multiple' => false,
-//                'label' => false,
-//            ])
+            ->add('userRole', EntityType::class, [
+                'class' => Role::class,
+                'choice_label' => 'roleName',
+                'expanded' => true,
+                'multiple' => false,
+                'label' => false,
+            ])
             ->add('pseudo', TextType::class, $this->getConfiguration("Votre pseudo ..."))
             ->add('mail', EmailType::class, $this->getConfiguration("Votre adresse mail ..."))
             ->add('avatar', UrlType::class, $this->getConfiguration("URL de votre avatar ..."))
