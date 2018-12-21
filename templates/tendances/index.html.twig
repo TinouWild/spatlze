@@ -112,6 +112,29 @@
         </div>
     </div>
 
+    <div class="container my-4">
+        <div class="row">
+            {% for article in posts %}
+                <div class="col-3 mb-3">
+                    <div class="border border-dark rounded p-2 bg-dark">
+                        <h3 class="text-light">{{article.title}}</h3>
+                        <p class="h4 text-white">{{article.author.pseudo}}</p>
+                        <a href="{{ path('articles_show', {'slug' : article.slug}) }}" class="btn btn-outline-light">Lire la suite</a>
+                        <a href="{{ path('article_like', {'id': article.id}) }}" class="btn btn-link js-like">
+                            {% if app.user and article.isLikedByUser(app.user) %}
+                                <i class="fas fa-thumbs-up text-warning"></i>
+                            {% else %}
+                                <i class="far fa-thumbs-up text-warning"></i>
+                            {% endif %}
+                            <span class="js-likes text-warning">{{ article.likes | length }}</span>
+                            <span class="js-label text-warning">J'aime</span>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
     <script>
         window.onload = function(argument) {
 
@@ -235,4 +258,36 @@
             font-size:25px;
         }
     </style>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    function onClickBtnLike(event) {
+        event.preventDefault();
+
+        const url = this.href;
+        const spanCount = this.querySelector('span.js-likes');
+        const icone = this.querySelector('i');
+
+        axios.get(url).then(function(response) {
+            spanCount.textContent = response.data.likes;
+
+            if(icone.classList.contains('fas')) {
+                icone.classList.replace('fas', 'far');
+            } else {
+                icone.classList.replace('far', 'fas');
+            }
+        }).catch(function(error) {
+            if(error.response.status === 403) {
+                window.alert("Vous ne pouvez pas liker un article si vous n'êtes pas connecté !")
+            }
+        });
+    }
+
+    document.querySelectorAll('a.js-like').forEach(function (link) {
+        link.addEventListener('click', onClickBtnLike);
+    })
+</script>
 {% endblock %}

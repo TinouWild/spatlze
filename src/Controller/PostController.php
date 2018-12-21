@@ -4,28 +4,27 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Entity\PostLike;
-use App\Entity\Theme;
 use App\Repository\ArticlesRepository;
 use App\Repository\PostLikeRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation\Article;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TendancesController extends AbstractController
+class PostController extends AbstractController
 {
     /**
-     * @Route("/tendances", name="tendances")
+     * @Route("/", name="homepage")
      */
-    public function index(ArticlesRepository $repo) : Response
-    {
+    public function index(Articles $posts){
         return $this->render('tendances/index.html.twig', [
-            'posts' => $repo->findAll()
+            'posts' => $posts
         ]);
     }
 
     /**
-     * @Route("/post/{id}/like", name="article_like")
+     * @Route("/post/{id}/like", name="post_like")
      * @param Articles $post
      * @param ObjectManager $manager
      * @param PostLikeRepository $likerepo
@@ -68,3 +67,4 @@ class TendancesController extends AbstractController
         ], 200);
     }
 }
+
