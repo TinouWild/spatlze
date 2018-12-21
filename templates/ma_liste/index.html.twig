@@ -3,26 +3,190 @@
 {% block title %}Ma page{% endblock %}
 
 
+
 {% block body %}
+
     {% if not app.user %}
 
-
-{% elseif app.user %}
-    <div class="container mt-3">
+<div class="container">
     <div class="row">
-        {% for article in articles %}
-            <div class="col my-2">
-                <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style='background-image: url("/images/articles/{{ article.image_name }}"); background-size : cover; height: 200px; width: 300px'>
-                        <div class="header text-light h3 ml-2">{{ article.title }}</div>
-                        <p class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</p>
-                        <button class="btn btn-outline-light ml-2">retirer</button>
-                        <i class="fas fa-share-alt fa-2x text-light"></i>
-                    </div></a>
+        <div class="col-4">
+
+        </div>
+        <div class="col-4 h3">
+            Vous n'êtes pas connecté. <br>
+            Pour accéder à votre favoris, <a style="color : orange; text-shadow: 1px 1px #6e6e6e" href="{{ path('account_login') }}">connectez vous</a>.
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row my-5">
+            <div class="col-md-4 mb-3">
+                <div class="card profile-card-1">
+                    <a href="{{ path('articles_nouveautes') }}"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" alt="profile-sample1" class="background"/></a>
+                    <div class="card-content">
+                        <h2>Nouveautés</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card profile-card-1">
+                    <a href="{{ path('tendances') }}"><img src="https://images.unsplash.com/photo-1531730194970-f4d4bfd6475d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" alt="profile-sample1" class="background"/></a>
+                    <div class="card-content">
+                        <h2>Tendances</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card profile-card-1">
+                    <a href="#"><img src="https://images.unsplash.com/photo-1521452864218-156416da8db3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" alt="profile-sample1" class="background"/></a>
+                    <div class="card-content">
+                        <h2>Fact checking</h2>
+                    </div>
+                </div>
             </div>
 
-        {% endfor %}
+            <style>
+                .profile-card-1 {
+                    font-family: 'Open Sans', Arial, sans-serif;
+                    position: relative;
+                    float: left;
+                    overflow: hidden;
+                    width: 100%;
+                    color: #2a2828;
+                    text-align: center;
+                    height:120px;
+                    border:none;
+                    text-shadow: 1px 1px #8a8a8a;
+                }
+                .profile-card-1 .background {
+                    width:100%;
+                    vertical-align: top;
+                    opacity: 0.9;
+                    -webkit-filter: blur(1px);
+                    filter: blur(1px);
+                    -webkit-transform: scale(1.8);
+                    transform: scale(2.8);
+                }
+                .profile-card-1 .card-content {
+                    width: 100%;
+                    padding: 15px 25px;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                }
+                .profile-card-1 h2 {
+                    margin: 0 0 5px;
+                    font-weight: 600;
+                    font-size:25px;
+                }
+            </style>
 
-{% endif %}
-    </div>
-    </div>
-{% endblock %}
+            {% elseif app.user %}
+
+            <div class="container">
+                <h2 class="my-4">Vos auteurs favoris sur Fix.<span style="color:#ff7a0c">R</span></h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for author in authors %}
+                        <div class="col">
+                            <a href="{{ path('page_author', {'slug': author.slug}) }}"><img class="rounded rounded-circle" src="{{ author.avatar }}"></a>
+                            <h3>{{ author.pseudo }}</h3>
+                            <div class="ui inverted orange button">
+                                <i class="fas fa-user-astronaut"></i>
+                                Follow
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container mt-3">
+                <div class="row">
+                    {% if not articles %}
+                        Vous n'avez pas ajouté d'articles à votre liste.<br>
+                    Consultez les nouveautés ou les tendances pour ajouter des articles à votre liste.
+
+
+                    <div class="container">
+
+                        <div class="row my-5">
+                            <div class="col-md-4 mb-3">
+                                <div class="card profile-card-1">
+                                    <a href="{{ path('articles_nouveautes') }}"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" alt="profile-sample1" class="background"/></a>
+                                    <div class="card-content">
+                                        <h2>Nouveautés</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card profile-card-1">
+                                    <a href="{{ path('tendances') }}"><img src="https://images.unsplash.com/photo-1531730194970-f4d4bfd6475d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" alt="profile-sample1" class="background"/></a>
+                                    <div class="card-content">
+                                        <h2>Tendances</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card profile-card-1">
+                                    <a href="#"><img src="https://images.unsplash.com/photo-1521452864218-156416da8db3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" alt="profile-sample1" class="background"/></a>
+                                    <div class="card-content">
+                                        <h2>Fact checking</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .profile-card-1 {
+                                    font-family: 'Open Sans', Arial, sans-serif;
+                                    position: relative;
+                                    float: left;
+                                    overflow: hidden;
+                                    width: 100%;
+                                    color: #2a2828;
+                                    text-align: center;
+                                    height:120px;
+                                    border:none;
+                                    text-shadow: 1px 1px #8a8a8a;
+                                }
+                                .profile-card-1 .background {
+                                    width:100%;
+                                    vertical-align: top;
+                                    opacity: 0.9;
+                                    -webkit-filter: blur(1px);
+                                    filter: blur(1px);
+                                    -webkit-transform: scale(1.8);
+                                    transform: scale(2.8);
+                                }
+                                .profile-card-1 .card-content {
+                                    width: 100%;
+                                    padding: 15px 25px;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 50%;
+                                }
+                                .profile-card-1 h2 {
+                                    margin: 0 0 5px;
+                                    font-weight: 600;
+                                    font-size:25px;
+                                }
+                            </style>
+                    {% else %}
+
+                        {% for article in articles %}
+                            <div class="col my-2">
+                                <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style='background-image: url("/images/articles/{{ article.image_name }}"); background-size : cover; height: 200px; width: 300px'>
+                                        <div class="header text-light h3 ml-2">{{ article.title }}</div>
+                                        <p class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</p>
+                                        <button class="btn btn-outline-light ml-2">retirer</button>
+                                        <i class="fas fa-share-alt fa-2x text-light"></i>
+                                    </div></a>
+                            </div>
+
+                        {% endfor %}
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endblock %}
+

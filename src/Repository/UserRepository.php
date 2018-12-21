@@ -48,11 +48,23 @@ class UserRepository extends ServiceEntityRepository
     public function findAllWriter()
     {
         return $this->createQueryBuilder('u')
-            ->orderBy('u.id', 'DESC')
+            ->orderBy('u.id', 'ASC')
             ->andWhere('u.userRole = 11')
+            ->setMaxResults(7)
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function findByUserConnect($idUser)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $playslist =
+            'SELECT U.pseudo, U.avatar, U.slug FROM user U, user_user UU 
+             WHERE U.id=UU.user_source AND U.id=UU.user_target AND UU.user_source = :idUser';
+        $stmt = $conn->prepare($playslist);
+        $stmt->execute(['idUser'=>$idUser]);
+        return $stmt->fetchAll();
     }
 
 
