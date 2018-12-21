@@ -32,7 +32,19 @@ class ArticlesController extends AbstractController
             'recentarticle' =>$article,
             'authors'=> $authors]);
     }
-
+    /**
+     * @Route("/tendances", name="articles_tendances", methods={"GET"})
+     */
+    public function tendances(ArticlesRepository $articlesRepository, UserRepository $userRepository): Response
+    {
+        $article = $articlesRepository->findByMostRecentDate(new \DateTime());
+        $articles = $articlesRepository->findAll();
+        $authors = $userRepository->findLastSixRecentWriter();
+        dump($authors);
+        return $this->render('articles/tendances.html.twig', ['articles' => $articles,
+            'recentarticle' =>$article,
+            'authors'=> $authors]);
+    }
     /**
      * @Route("/new", name="articles_new", methods={"GET","POST"})
      */
