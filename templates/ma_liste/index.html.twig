@@ -2,15 +2,24 @@
 
 {% block title %}Ma page{% endblock %}
 
-{% if not app.user %}
 
 {% block body %}
+    {% if not app.user %}
 
 
-{% endblock %}
-{% else %}
-{% block body %}
+{% elseif app.user %}
 
+        {% for article in articles %}
 
+            <div class="col my-2">
+                <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style='background-image: url("/images/articles/{{ article.image_name }}"); background-size : cover; height: 200px; width: 300px'>
+                        <div class="header text-light h3 ml-2">{{ article.title }}</div>
+                        <p class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</p>
+                    </div></a>
+            </div>
+
+        {% endfor %}
+
+{% endif %}
 
 {% endblock %}

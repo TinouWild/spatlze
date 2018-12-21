@@ -102,6 +102,11 @@ class User implements UserInterface
     private $comments;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Articles", mappedBy="playlist")
+     */
+    private $playlist;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
@@ -121,6 +126,7 @@ class User implements UserInterface
         $this->followers = new ArrayCollection();
         $this->following = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->playlist = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -357,6 +363,34 @@ class User implements UserInterface
             if ($comment->getAuthor() === $this) {
                 $comment->setAuthor(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Articles[]
+     */
+    public function getPlaylist(): Collection
+    {
+        return $this->playlist;
+    }
+
+    public function addPlaylist(Articles $playlist): self
+    {
+        if (!$this->playlist->contains($playlist)) {
+            $this->playlist[] = $playlist;
+            $playlist->addPlaylist($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylist(Articles $playlist): self
+    {
+        if ($this->playlist->contains($playlist)) {
+            $this->playlist->removeElement($playlist);
+            $playlist->removePlaylist($this);
         }
 
         return $this;
