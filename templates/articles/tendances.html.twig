@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fix.R{% endblock %}
+
+{% block body %}
+
+    {#Les auteurs#}
+    <div class="container">
+        <h2 class="my-3">Les auteur.e.s les plus populaires sur Fix.<span style="color:#ff7a0c">R</span></h2>
+    </div>
+    <div class="container">
+        <div class="row">
+ {#           {% for author in authors %}#}
+
+
+                <div class="col">
+                    <a href="#"><img class="rounded rounded-circle" src="#"></a>
+                    <h3>#</h3>
+                    <div class="ui inverted orange button">
+                        <i class="fas fa-user-astronaut"></i>
+                        Follow
+                    </div>
+                </div>
+{#
+            {% endfor %}#}
+        </div>
+    </div>
+
+
+    {#Les articles#}
+    <div class="container">
+        <h2 class="my-3">Les articles les plus appreciés sur Fix.<span style="color:#ff7a0c">R</span></h2>
+    </div>
+{#    {% for recentarticle in recentarticle %}#}
+        <a href="#"> <div class="d-flex align-baseline" style='background-image: url("#"); background-size: cover; height: 400px'>
+                <div class="container text-light">
+{#                    <h1>{{ recentarticle.title }}</h1>#}
+                    <p> Article du {#{{ recentarticle.date ? recentarticle.date|date('d-m-Y') : '' }}#} </p>
+                </div>
+            </div></a>
+
+{#    {% endfor %}#}
+
+    <div class="container my-3">
+        <div class="row">
+{#            {% for article in articles |sort %}#}
+                <div class="col">
+                    <a href="#"><div class="" style='background-image: url("#"); background-size : cover; height: 200px; width: 300px'>
+                            <div class="header text-light h3 my-3 ml-2">{#{{ article.title }}#}</div>
+                            <p class="text-light">{#{{ article.date ? article.date|date('d-m-Y') : '' }}#}</p>
+                        </div></a>
+                </div>
+{#            {% else %}#}
+                <div colspan="6">no records found</div>
+
+{#            {% endfor %}#}
+
+        </div>
+    </div>
+
+{% endblock %}
