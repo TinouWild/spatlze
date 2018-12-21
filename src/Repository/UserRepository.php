@@ -39,7 +39,7 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC')
-            ->andWhere('u.userRole = 11')
+            ->andWhere('u.userRole = 48')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
@@ -49,7 +49,7 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC')
-            ->andWhere('u.userRole = 11')
+            ->andWhere('u.userRole = 48')
             ->getQuery()
             ->getResult()
             ;

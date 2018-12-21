@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Theme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ChatController extends AbstractController
+class TendancesController extends AbstractController
 {
     /**
-     * @Route("/chat", name="chat")
+     * @Route("/tendances", name="tendances")
      */
     public function index()
     {
-        return $this->render('chat/index.html.twig');
+        return $this->render('tendances/index.html.twig');
     }
 }

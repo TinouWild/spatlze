@@ -6,7 +6,7 @@
 
     {#Les auteurs#}
     <div class="container">
-        <h2 class="my-3">Les auteur.e.s ayant publiés récemment sur Fix.<span style="color:#ff7a0c">R</span></h2>
+        <h2 class="my-4">Les auteur.e.s ayant publiés récemment sur Fix.<span style="color:#ff7a0c">R</span></h2>
     </div>
     <div class="container">
         <div class="row">
@@ -25,7 +25,7 @@
 
     {#Les articles#}
     <div class="container">
-        <h2 class="my-3">Les derniers articles parus sur Fix.<span style="color:#ff7a0c">R</span></h2>
+        <h2 class="my-4">Les derniers articles parus sur Fix.<span style="color:#ff7a0c">R</span></h2>
     </div>
     {% for recentarticle in recentarticle %}
         <a href="{{ path('articles_show', {'slug': recentarticle.slug}) }}"> <div class="d-flex align-baseline" style='background-image: url("/images/articles/{{ recentarticle.imageName }}"); background-size: cover; height: 400px'>
@@ -40,7 +40,7 @@
     <div class="container mt-3">
         <div class="row">
             {% for article in articles |sort %}
-                <div class="col">
+                <div class="col my-2">
                     <a href="{{ path('articles_show', {'slug': article.slug}) }}"><div class="" style='background-image: url("/images/articles/{{ article.imageName }}"); background-size : cover; height: 200px; width: 300px'>
                             <div class="header text-light h3 ml-2">{{ article.title }}</div>
                             <p class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</p>

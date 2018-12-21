@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article {{ article.title }}{% endblock %}
+
+{% block body %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+
+    <div class="jumbotron" style="background-image: url('/images/articles/{{ article.imageName }}'); background-size: cover; height: 400px">
+        <div class="container">
+            <h1 class="text-light">{{ article.title }}</h1>
+            <div class="text-light">{{ article.date ? article.date|date('d-m-Y') : '' }}</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3 ">
+                <img class="rounded rounded-circle ui small" src="{{ article.author.avatar }}">
+                <h3>{{ article.author.pseudo }}</h3>
+            </div>
+            <div class="col-9">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="ui buttons">
+                                <button class="ui button">Unfollow</button>
+                                <div class="or"></div>
+                                <button class="ui positive button">Follow</button>
+                            </div>
+                        </td>
+                        <td><a href="{{ path('articles_show', {'slug' : article.slug}) }}" class="btn btn-outline-dark">Retourner à l'article</a></td>
+                        <td>
+                            <div href="#" class="ui inverted orange button">
+                                Voir le débat
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ui labeled button" tabindex="0">
+                                <div class="ui red button">
+                                    <i class="fas fa-heart"></i> Like
+                                </div>
+                                <a class="ui basic red left pointing label">
+                                    1.250
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row my-5 align-items-center">
+            <div class="col-1"></div>
+            <div class="col-2"><img class="rounded rounded-circle ui small" src="https://randomuser.me/api/portraits/women/41.jpg"></div>
+            <div class="col-2 text-info h1">Isabelle</div>
+            <div class="col-6">May musical arrival beloved luckily adapted him. Shyness mention married son she his started now. Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles. </div>
+            <div class="col-1"><a href="#"><i class="fas fa-pen fa-2x"></i></a></div>
+        </div>
+        <div class="row my-1 align-items-center">
+            <div class="col-1"></div>
+            <div class="col-2"></div>
+            <div class="col-2"><img class="rounded rounded-circle ui small" src="https://randomuser.me/api/portraits/men/77.jpg"></div>
+            <div class="col-6">May musical arrival beloved luckily adapted him. Shyness mention married son she his started now. Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles. </div>
+            <div class="col-1"><a href="#"><i class="fas fa-pen fa-2x"></i></a></div>
+        </div>
+        <div class="row my-1 align-items-center">
+            <div class="col-1"></div>
+            <div class="col-2"></div>
+            <div class="col-2"><img class="rounded rounded-circle ui small" src="https://randomuser.me/api/portraits/men/10.jpg"></div>
+            <div class="col-6">Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles. </div>
+            <div class="col-1"><a href="#"><i class="fas fa-pen fa-2x"></i></a></div>
+        </div>
+
+        <div class="row my-5 align-items-center">
+            <div class="col-1"></div>
+            <div class="col-2"><img class="rounded rounded-circle ui small" src="https://randomuser.me/api/portraits/women/74.jpg"></div>
+            <div class="col-2 text-info h1">Sylvie</div>
+            <div class="col-6">Shyness mention married son she his started now. Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles. </div>
+            <div class="col-1"><a href=""><i class="fas fa-pen fa-2x"></i></a></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="container">
+        <h3 class="h2" align="center">Il reste 4 place(s) pour participer au débat ! Votre commentaire ci-dessous :</h3>
+        <div class="row align-items-center">
+            <div class="col-10">
+                <textarea></textarea>
+            </div>
+            <div class="col">
+                <input type="submit" class="btn btn-outline-success">
+            </div>
+        </div>
+{% endblock %}

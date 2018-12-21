@@ -13,35 +13,49 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 ">
                 <img class="rounded rounded-circle ui small" src="{{ article.author.avatar }}">
-                <h5>{{ article.author.pseudo }}</h5>
-                <div class="ui inverted orange button">
-                    <i class="fas fa-user-astronaut"></i>
-                    Follow
-                </div>
+                <h3>{{ article.author.pseudo }}</h3>
             </div>
             <div class="col-9">
-                <div class="row">
-                    <div class="col">
-                        <h4 >Débat prévu le "date du débat"</h4>
-                        <div class="ui inverted orange button">
-                            Participer au débat
-                        </div>
-                    </div>
-                    <div class="col">
-                        <h4>Temps restant avant débat</h4>
-                        <div class="ui inverted orange button">
-                            Voir le débat
-                        </div>
-                    </div>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="ui buttons">
+                                <button class="ui button">Unfollow</button>
+                                <div class="or"></div>
+                                <button class="ui positive button">Follow</button>
+                            </div>
+                        </td>
+                        <td><a href="{{ path('debat', {'slug' : article.slug}) }}" class="btn btn-outline-dark">Participer au débat</a></td>
+                        <td>
+                            <div href="#" class="ui inverted orange button">
+                                Voir le débat
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ui labeled button" tabindex="0">
+                                <div class="ui red button">
+                                    <i class="fas fa-heart"></i> Like
+                                </div>
+                                <a class="ui basic red left pointing label">
+                                    1.250
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="container my-5 h1">
+                    {{ article.title | raw }}
                 </div>
 
+                <div class="container my-5">
+                    {{ article.content | raw }}
+                </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        {{ article.content | raw }}
-    </div>
-
 {% endblock %}
