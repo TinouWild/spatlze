@@ -101,14 +101,10 @@ class Articles
     private $comments;
 
     /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="playlist")
      */
+    private $playlist;
+
     public function setImageFile(?File $image = null): void
     {
         $this->imageFile = $image;
@@ -162,6 +158,7 @@ class Articles
         $this->theme = new ArrayCollection();
         $this->tag = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->playlist = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -331,6 +328,32 @@ class Articles
             if ($comment->getArticle() === $this) {
                 $comment->setArticle(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getPlaylist(): Collection
+    {
+        return $this->playlist;
+    }
+
+    public function addPlaylist(User $playlist): self
+    {
+        if (!$this->playlist->contains($playlist)) {
+            $this->playlist[] = $playlist;
+        }
+
+        return $this;
+    }
+
+    public function removePlaylist(User $playlist): self
+    {
+        if ($this->playlist->contains($playlist)) {
+            $this->playlist->removeElement($playlist);
         }
 
         return $this;
