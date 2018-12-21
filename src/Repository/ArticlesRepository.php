@@ -50,7 +50,7 @@ class ArticlesRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
         $playslist =
-            'SELECT * FROM articles A, user U, articles_user AU 
+            'SELECT A.title, A.date, A.slug, A.image_name FROM articles A, user U, articles_user AU 
              WHERE A.id=AU.articles_id AND U.id=AU.user_id AND U.id = :idUser';
         $stmt = $conn->prepare($playslist);
         $stmt->execute(['idUser'=>$idUser]);
