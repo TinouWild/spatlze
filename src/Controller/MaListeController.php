@@ -17,10 +17,10 @@ class MaListeController extends AbstractController
     public function index(ArticlesRepository $articlesRepository)
     {
         $user = $this->getUser();
-        $id = $user->getId();
         if ($user == null){
             $articles= $articlesRepository->findAll();
         }else{
+            $id = $user->getId();
             $articles = $articlesRepository->findByUserConnect($id);
         };
         dump($articles);
