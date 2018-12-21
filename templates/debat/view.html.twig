@@ -31,93 +31,6 @@
 
                 <br>
 
-                <div class="paperwrapper mt-5">
-                    <div class="paper">
-                        <div class="textwrapper">
-                            <textarea name="" id="" maxlength="700"></textarea>
-                        </div>
-                    </div>
-                    <style>
-                        html,body{
-                            height:100%;
-                            width:100%;
-                            padding:0px;
-                            margin:0px;
-                            text-align:center;
-                        }
-                        .bg{
-                            display:inline-block;
-                            height:400px;
-                            max-height:400px;
-                            width:10px;
-                            background: repeating-linear-gradient(
-                                    0deg,
-                                    rgba(0,0,255,0.3),
-                                    #fff 1px,
-                                    #fff 20px
-                            );
-                        }
-                        .paperwrapper{
-                            display:inline-block;
-                            vertical-align:middle;
-                            filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
-
-                        }
-                        .paper{
-                            height:400px;
-                            width:297px;
-                            max-height:400px;
-                            max-width:297px;
-                            position: relative;
-                            border-radius:20px;
-                            background-color:white;
-                            /*box-shadow:1px 1px 12px rgba(0,0,0,0.5);*/
-                            margin-left:auto;
-                            margin-right:auto;
-                            padding-top:40px;
-                            padding-bottom:20px;
-                            clip-path:polygon(0px 0px, 5px 5px,0px 5px,5px 10px, 10px 25px,2px 50px,8px 80px,0px 123px, 3px 156px, 1px 200px,6px 230px, 0px 300px, 4px 340px, 7px 360px, 0px 460px, 100% 100%, 100% 0%, 0px 0px);
-
-                        }
-                        .textwrapper{
-                            background: repeating-linear-gradient(
-                                    0deg,
-                                    rgba(0,0,255,0.3),
-                                    #fff 1px,
-                                    #fff 20px
-                            );
-                            height:100%;
-                            width:100%;
-                            border-bottom: 1px solid rgba(255,0,0,0.3);
-                            border-top: 1px solid rgba(255,0,0,0.3);
-                        }
-                        textarea{
-                            height:100%;
-                            padding: 0px;
-                            margin:0px;
-                            margin-left:10px;
-                            margin-right:10px;
-                            background: transparent;
-                            border:none;
-                            line-height: 20px;
-                            font-size:14px;
-                            width:calc(100% - 20px);
-                            outline:0;
-                            resize:none;
-                            font-family: monospace;
-                            color:rgba(0,0,0,0.5);
-                        }
-                        #pagination{
-                            position: absolute;
-                            bottom:5px;
-                            font-size:10px;
-                            right:20px;
-                        }
-                    </style>
-
-                    <a href="#" class="btn btn-outline-success mt-3">Participer au débat</a>
-                </div>
-
                 <div class="container"></div>
                 <script>
                     "use strict";
@@ -421,8 +334,8 @@
                         }
 
                         function start() {
-                            let endDate = undefined,
-                                endDateData = undefined;
+                            let endDate = 2018-12-25,
+                                endDateData = 2018-12-25;
 
                             fixCompatibility();
 
@@ -811,7 +724,7 @@
                         <div class="col-2"></div>
                         <div class="col-2"><img class="rounded rounded-circle ui small" src="https://randomuser.me/api/portraits/men/10.jpg"></div>
                         <div class="col-6">Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles. </div>
-                        <div class="col-1"><a href="#"><i class="fas fa-pen fa-2x"></i></a></div>
+                        <div class="col-1"></div>
                     </div>
 
                     <div class="row my-5 align-items-center">
@@ -826,7 +739,7 @@
                         <div class="col-2"></div>
                         <div class="col-2"><img class="rounded rounded-circle ui small" src="{{ article.author.avatar }}"></div>
                         <div class="col-6 text-primary">Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles. </div>
-                        <div class="col-1"><a href="#"><i class="fas fa-pen fa-2x"></i></a></div>
+                        <div class="col-1"></div>
                     </div>
                 </div>
             </div>

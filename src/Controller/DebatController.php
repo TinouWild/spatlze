@@ -18,4 +18,14 @@ class DebatController extends AbstractController
             'article' => $article
         ]);
     }
+
+    /**
+     * @Route("/debat/{slug}/view_the_debat", name="debat_view")
+     */
+    public function viewDebat(Articles $article) : Response
+    {
+        return $this->render('debat/view.html.twig', [
+            'article' => $article
+        ]);
+    }
 }
